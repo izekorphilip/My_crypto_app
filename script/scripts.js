@@ -1,3 +1,6 @@
+
+let coinPrice = document.querySelector("#price");
+
 fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin%2Ctether%2Cethereum%2Clitecoin%2Ccardano%2Cdogecoin&vs_currencies=usd&include_24hr_change=true')
     .then(res => res.json())
     .then(json => {
@@ -26,3 +29,20 @@ fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin%2Ctether%2Cethe
         `;
         }
     });
+
+let btc = document.getElementById("bitcoin");
+let eth = document.getElementById("ethereum");
+let doge = document.getElementById("dogecoin");
+
+let settings = {
+    "async": true,
+    "scrossDomain" : true,
+    "url": "'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin%2Ctether%2Cethereum%2Clitecoin%2Ccardano%2Cdogecoin&vs_currencies=usd&include_24hr_change=true",
+    "method" : "GEt",
+    "headers" : {}
+}
+$.ajax(settings).done(function(response){
+    btc.innerHTML = response.bitcoin.usd;
+    eth.innerHTML = response.ethereum.usd;
+    doge.innerHTML = response.dogecoin.usd;
+}) 
